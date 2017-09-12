@@ -16,3 +16,4 @@
 .byebug_history
 
 /client/node_modules
+/public/*

@@ -11,6 +11,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
+          <FlashMessages />
           <Layout>
             <Route exact path="/" component={Home} />
             <Route path="/sections" component={Sections} />

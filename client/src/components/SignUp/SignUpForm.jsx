@@ -23,13 +23,12 @@ class SignUpForm extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let d = {
+    axios.post('/auth', {
       email: this.state.email,
       password: this.state.password,
       password_confirmation: this.state.password_confirmation,
       confirm_success_url: "/"
-    }
-    axios.post('/auth', d)
+    })
     .then(response => console.log(response))
     .catch(error => console.log(error));
   }
@@ -44,7 +43,6 @@ class SignUpForm extends Component {
             <input
               className="input"
               id="email"
-              // name="email"
               type="text"
               placeholder="Enter email here..."
               value={this.state.email}
@@ -55,7 +53,6 @@ class SignUpForm extends Component {
             <input
               className="input"
               id="password"
-              // name="password"
               type="password"
               placeholder="Enter password here..."
               value={this.state.password}
@@ -66,7 +63,6 @@ class SignUpForm extends Component {
             <input
               className="input"
               id="password_confirmation"
-              // name="password_confirmation"
               type="password"
               placeholder="Retype password here..."
               value={this.state.password_confirmation}

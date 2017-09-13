@@ -26,7 +26,13 @@ class LoginForm extends Component {
       email: this.state.email,
       password: this.state.password
     })
-    .then(response => console.log(response))
+    .then(response => {
+      console.log(response);
+      sessionStorage.setItem("access-token", response.headers["access-token"]);
+      sessionStorage.setItem("client", response.headers["client"]);
+      sessionStorage.setItem("expiry", response.headers["expiry"]);
+      sessionStorage.setItem("uid", response.headers["uid"]);
+    })
     .catch(error => console.log(error));
   }
 

@@ -4,6 +4,9 @@ import FormField from "../bulma/FormField";
 import CenteredCard from "../bulma/CenteredCard";
 import { store } from "../../index";
 import { setBrowserSession } from "../../utils/authUtil";
+import { loginUser } from "../../actions/sessionActions";
+import { fetchStart, fetchSuccess, fetchFailure } from "../../actions/apiActions";
+import SubmitButton from "./SubmitButton";
 
 class LoginForm extends Component {
   constructor(props){
@@ -29,12 +32,16 @@ class LoginForm extends Component {
       password: this.state.password
     })
     .then(response => {
-      console.log(response);
-      store.dispatch({type: "LOGIN_USER"});
-      setBrowserSession(response);
+      store.dispatch(fetchSuccess());
+      store.dispatch(loginUser());
       this.props.handleSuccess();
+      setBrowserSession(response);
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      store.dispatch(fetchFailure());
+    });
+    store.dispatch(fetchStart());
   }
 
   render(){
@@ -63,7 +70,7 @@ class LoginForm extends Component {
               onChange={this.handleChange}
             />
           </FormField>
-          <button className="button is-primary" type="submit">Submit</button>
+          <SubmitButton isFetching={store.getState().api.isFetching}/>
         </form>
       </CenteredCard>
     )

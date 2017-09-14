@@ -48,9 +48,7 @@ class Navbar extends Component {
                   </Link>
                 </div>
                 <div className="control">
-                  <Link to="/logout">
-                    <button className="button is-danger" onClick={this.handleLogout}>Logout</button>
-                  </Link>
+                  <button className="button is-danger" onClick={this.handleLogout}>Logout</button>
                 </div>
                 <div className="control">
                   <Link to="/sign_up">

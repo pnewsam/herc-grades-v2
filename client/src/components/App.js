@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import Navbar from "./Navbar";
-import FlashMessages from "./FlashMessages";
+import FlashContainer from "./containers/FlashContainer";
 import Layout from "./bulma/Layout"
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <FlashMessages />
+          <FlashContainer />
           <Layout>
             <Route exact path="/" component={Home} />
             <Route path="/sections" component={Sections} />

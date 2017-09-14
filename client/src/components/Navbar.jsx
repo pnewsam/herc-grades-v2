@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { logoutUser } from "../actions/sessionActions";
+import { fetchStart, fetchSuccess, fetchFailure } from "../actions/apiActions";
+import { showFlash, hideFlash } from "../actions/flashActions";
 import { store } from "../index";
 import axios from "axios";
 
@@ -11,21 +13,29 @@ class Navbar extends Component {
   }
 
   handleLogout(){
-    axios({
-      method: 'delete',
-      url: '/auth/sign_out',
-      data: {
-        uid: sessionStorage.getItem('uid'),
-        client: sessionStorage.getItem('client'),
-        'access-token': sessionStorage.getItem('access-token')  
-      }
+    store.dispatch(dispatch => {
+      dispatch(fetchStart());
+      axios({
+        method: 'delete',
+        url: '/auth/sign_out',
+        data: {
+          uid: sessionStorage.getItem('uid'),
+          client: sessionStorage.getItem('client'),
+          'access-token': sessionStorage.getItem('access-token')  
+        }
+      })
+      .then(response => {
+        dispatch(logoutUser());
+        dispatch(fetchSuccess(response.body));
+        dispatch(showFlash("Logout successful!", "success"));
+        setTimeout(() => { dispatch(hideFlash()) }, 3000);
+        sessionStorage.clear();
+      })
+      .catch(error => 
+        dispatch(fetchFailure(error.response.data.errors[0]))
+      )
+
     })
-    .then(response => {
-      console.log(response)
-      store.dispatch(logoutUser());
-      sessionStorage.clear();
-    })
-    .catch(error => console.log(error))
   }
 
   render(){

@@ -6,6 +6,7 @@ import { store } from "../../index";
 import { setBrowserSession } from "../../utils/authUtil";
 import { loginUser } from "../../actions/sessionActions";
 import { fetchStart, fetchSuccess, fetchFailure } from "../../actions/apiActions";
+import { showFlash, hideFlash } from "../../actions/flashActions";
 import SubmitButton from "./SubmitButton";
 
 class LoginForm extends Component {
@@ -34,14 +35,18 @@ class LoginForm extends Component {
         password: this.state.password
       })
       .then(response => {
-        dispatch(fetchSuccess());
+        dispatch(fetchSuccess(response.data));
         dispatch(loginUser());
+        dispatch(showFlash("Login successful!", "success"));
+        setTimeout(() => { dispatch(hideFlash()) }, 3000);
         this.props.handleSuccess();
         setBrowserSession(response);
       })
       .catch(error => {
         console.log(error);
-        store.dispatch(fetchFailure());
+        dispatch(showFlash("Login unsuccessful!", "danger"));
+        setTimeout(() => { dispatch(hideFlash()) }, 3000);
+        store.dispatch(fetchFailure(error));
       });
     });
   }

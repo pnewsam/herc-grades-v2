@@ -27,21 +27,23 @@ class LoginForm extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    axios.post('/auth/sign_in', {
-      email: this.state.email,
-      password: this.state.password
-    })
-    .then(response => {
-      store.dispatch(fetchSuccess());
-      store.dispatch(loginUser());
-      this.props.handleSuccess();
-      setBrowserSession(response);
-    })
-    .catch(error => {
-      console.log(error);
-      store.dispatch(fetchFailure());
+    store.dispatch((dispatch) => {
+      dispatch(fetchStart());
+      axios.post('/auth/sign_in', {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        dispatch(fetchSuccess());
+        dispatch(loginUser());
+        this.props.handleSuccess();
+        setBrowserSession(response);
+      })
+      .catch(error => {
+        console.log(error);
+        store.dispatch(fetchFailure());
+      });
     });
-    store.dispatch(fetchStart());
   }
 
   render(){

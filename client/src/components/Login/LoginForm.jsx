@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import FormField from "../bulma/FormField";
 import CenteredCard from "../bulma/CenteredCard";
+import { store } from "../../index";
 
 class LoginForm extends Component {
   constructor(props){
@@ -11,7 +12,7 @@ class LoginForm extends Component {
     this.state = {
       email: "",
       password: ""
-    }
+    };
   }
 
   handleChange(e){
@@ -28,6 +29,7 @@ class LoginForm extends Component {
     })
     .then(response => {
       console.log(response);
+      store.dispatch({type: "LOGIN_USER"});
       sessionStorage.setItem("access-token", response.headers["access-token"]);
       sessionStorage.setItem("client", response.headers["client"]);
       sessionStorage.setItem("expiry", response.headers["expiry"]);

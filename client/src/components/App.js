@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./SignUp/SignUp";
 import Login from "./Login/Login";
 import Navbar from "./Navbar";
+import FlashMessages from "./FlashMessages";
 import Layout from "./bulma/Layout"
 
 class App extends Component {

@@ -1,7 +1,33 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { logoutUser } from "../actions/sessionActions";
+import { store } from "../index";
+import axios from "axios";
 
 class Navbar extends Component {
+  constructor(props){
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogout(){
+    axios({
+      method: 'delete',
+      url: '/auth/sign_out',
+      data: {
+        uid: sessionStorage.getItem('uid'),
+        client: sessionStorage.getItem('client'),
+        'access-token': sessionStorage.getItem('access-token')  
+      }
+    })
+    .then(response => {
+      console.log(response)
+      store.dispatch(logoutUser());
+      sessionStorage.clear();
+    })
+    .catch(error => console.log(error))
+  }
+
   render(){
     return(
       <nav className="navbar">
@@ -19,6 +45,11 @@ class Navbar extends Component {
                 <div className="control">
                   <Link to="/login">
                     <button className="button is-primary">Login</button>
+                  </Link>
+                </div>
+                <div className="control">
+                  <Link to="/logout">
+                    <button className="button is-danger" onClick={this.handleLogout}>Logout</button>
                   </Link>
                 </div>
                 <div className="control">

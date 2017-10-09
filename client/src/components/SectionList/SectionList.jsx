@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { headers } from '../utils/apiUtil';
+import ListItem from './ListItem';
+import { headers } from '../../utils/apiUtil';
 
-class Sections extends Component {
+class SectionList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +17,7 @@ class Sections extends Component {
         headers: headers()
       })
       .then(response => {
+        console.log(response);
         this.setState({ sections: response.data });
       })
       .catch(error => console.log(error));
@@ -23,10 +25,17 @@ class Sections extends Component {
   render() {
     return (
       <div>
-        <h2>Sections</h2>
+        {this.state.sections.map(s => (
+          <ListItem
+            courseName={s.course.name}
+            period={s.period}
+            academicYearStart={s.academic_year_start}
+            academicYearEnd={s.academic_year_end}
+          />
+        ))}
       </div>
     );
   }
 }
 
-export default Sections;
+export default SectionList;

@@ -1,14 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
-import reducers from "./reducers";
-import './index.css';
-import App from './components/App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+
 import registerServiceWorker from './registerServiceWorker';
-import "bulma/css/bulma.css";
+import reducers from './reducers';
+import 'bulma/css/bulma.css';
+import './index.css';
+import App from './App';
 
 export let store = createStore(reducers, applyMiddleware(logger, thunk));
 

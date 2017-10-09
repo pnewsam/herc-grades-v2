@@ -1,24 +1,28 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { logoutUser } from "../../actions/sessionActions";
-import { fetchStart, fetchSuccess, fetchFailure } from "../../actions/apiActions";
-import { showFlash, hideFlash } from "../../actions/flashActions";
-import NavbarBurger from "./NavbarBurger";
-import NavbarMenu from "./NavbarMenu";
-import { store } from "../../index";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { logoutUser } from '../../actions/sessionActions';
+import {
+  fetchStart,
+  fetchSuccess,
+  fetchFailure
+} from '../../actions/apiActions';
+import { showFlash, hideFlash } from '../../actions/flashActions';
+import NavbarBurger from './NavbarBurger';
+import NavbarMenu from './NavbarMenu';
+import { store } from '../../index';
+import axios from 'axios';
 
 class Navbar extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleBurgerClick = this.handleBurgerClick.bind(this);
     this.state = {
       burgerIsActive: false
-    }
+    };
   }
 
-  handleBurgerClick(){
+  handleBurgerClick() {
     let active;
     if (this.state.burgerIsActive) {
       active = false;
@@ -28,7 +32,7 @@ class Navbar extends Component {
     this.setState({ burgerIsActive: active });
   }
 
-  handleLogout(){
+  handleLogout() {
     store.dispatch(dispatch => {
       dispatch(fetchStart());
       axios({
@@ -37,31 +41,33 @@ class Navbar extends Component {
         data: {
           uid: sessionStorage.getItem('uid'),
           client: sessionStorage.getItem('client'),
-          'access-token': sessionStorage.getItem('access-token')  
+          'access-token': sessionStorage.getItem('access-token')
         }
       })
-      .then(response => {
-        dispatch(logoutUser());
-        dispatch(fetchSuccess(response.body));
-        dispatch(showFlash("Logout successful!", "success"));
-        setTimeout(() => { dispatch(hideFlash()) }, 3000);
-        sessionStorage.clear();
-      })
-      .catch(error => 
-        dispatch(fetchFailure(error.response.data.errors[0]))
-      )
-
-    })
+        .then(response => {
+          dispatch(logoutUser());
+          dispatch(fetchSuccess(response.body));
+          dispatch(showFlash('Logout successful!', 'success'));
+          setTimeout(() => {
+            dispatch(hideFlash());
+          }, 3000);
+          sessionStorage.clear();
+        })
+        .catch(error => dispatch(fetchFailure(error.response.data.errors[0])));
+    });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <nav className="navbar">
         <div className="navbar-brand">
           <div className="navbar-item">
-            <p>HercGrades</p>
+            <a href="/">Herc Grades</a>
           </div>
-          <NavbarBurger isActive={this.state.burgerIsActive} handleClick={this.handleBurgerClick} />
+          <NavbarBurger
+            isActive={this.state.burgerIsActive}
+            handleClick={this.handleBurgerClick}
+          />
         </div>
         <NavbarMenu isActive={this.state.burgerIsActive}>
           <div className="navbar-item">
@@ -72,7 +78,12 @@ class Navbar extends Component {
                 </Link>
               </div>
               <div className="control">
-                <button className="button is-danger" onClick={this.handleLogout}>Logout</button>
+                <button
+                  className="button is-danger"
+                  onClick={this.handleLogout}
+                >
+                  Logout
+                </button>
               </div>
               <div className="control">
                 <Link to="/sign_up">
@@ -80,10 +91,10 @@ class Navbar extends Component {
                 </Link>
               </div>
             </div>
-            </div>
-          </NavbarMenu>
+          </div>
+        </NavbarMenu>
       </nav>
-    )
+    );
   }
 }
 

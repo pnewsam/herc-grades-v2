@@ -5,9 +5,9 @@ import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import FlashContainer from './components/containers/FlashContainer';
-import Layout from './components/bulma/Layout';
 import Home from './pages/home';
-import Sections from './pages/sections';
+import Sections from './pages/sections/index';
+import Courses from './pages/courses/index';
 
 class App extends Component {
   render() {
@@ -16,12 +16,11 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <FlashContainer />
-          <Layout>
-            <Route exact path="/" component={Home} />
-            <Route path="/sections" component={Sections} />
-            <Route path="/sign_up" component={SignUp} />
-            <Route path="/login" component={Login} />
-          </Layout>
+          <Route exact path="/" component={Home} />
+          <Route path="/sections" component={Sections} />
+          <Route path="/courses" component={Courses} />
+          <Route path="/sign_up" component={SignUp} />
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     );

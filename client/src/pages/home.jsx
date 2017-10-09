@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/bulma/Header';
 import Section from '../components/bulma/Section';
 
@@ -8,10 +9,10 @@ const Home = () => {
       <Header title="Home" />
       <Section>
         <h2 className="title is-2">
-          <a href="/sections">Sections</a>
+          <Link to="/sections">Sections</Link>
         </h2>
         <h2 className="title is-2">
-          <a href="/courses">Courses</a>
+          <Link to="/courses">Courses</Link>
         </h2>
       </Section>
     </div>

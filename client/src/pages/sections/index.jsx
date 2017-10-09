@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import Header from '../../components/bulma/Header';
 import Section from '../../components/bulma/Section';
@@ -12,7 +12,7 @@ const Sections = ({ match }) => {
       <Header title="Sections">
         <ul>
           <li>
-            <a href="/sections/new">Create a New Section</a>
+            <Link to="/sections/new">Create a New Section</Link>
           </li>
         </ul>
       </Header>

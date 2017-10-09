@@ -62,7 +62,7 @@ class Navbar extends Component {
       <nav className="navbar">
         <div className="navbar-brand">
           <div className="navbar-item">
-            <a href="/">Herc Grades</a>
+            <Link to="/">Herc Grades</Link>
           </div>
           <NavbarBurger
             isActive={this.state.burgerIsActive}

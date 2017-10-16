@@ -40,8 +40,10 @@ class LoginForm extends Component {
           password: this.state.password
         })
         .then(response => {
+          console.log(response.data);
+          console.log(response.data.data.email);
           dispatch(fetchSuccess(response.data));
-          dispatch(loginUser());
+          dispatch(loginUser(response.data.data.email));
           dispatch(showFlash('Login successful!', 'success'));
           setTimeout(() => {
             dispatch(hideFlash());

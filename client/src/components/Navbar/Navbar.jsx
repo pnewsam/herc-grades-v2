@@ -9,6 +9,7 @@ import {
 import { showFlash, hideFlash } from '../../actions/flashActions';
 import NavbarBurger from './NavbarBurger';
 import NavbarMenu from './NavbarMenu';
+import UserDash from './UserDash';
 import { store } from '../../index';
 import axios from 'axios';
 
@@ -70,28 +71,7 @@ class Navbar extends Component {
           />
         </div>
         <NavbarMenu isActive={this.state.burgerIsActive}>
-          <div className="navbar-item">
-            <div className="field is-grouped">
-              <div className="control">
-                <Link to="/login">
-                  <button className="button is-primary">Login</button>
-                </Link>
-              </div>
-              <div className="control">
-                <button
-                  className="button is-danger"
-                  onClick={this.handleLogout}
-                >
-                  Logout
-                </button>
-              </div>
-              <div className="control">
-                <Link to="/sign_up">
-                  <button className="button is-info">Sign Up</button>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <UserDash />
         </NavbarMenu>
       </nav>
     );

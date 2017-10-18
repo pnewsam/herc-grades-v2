@@ -18,7 +18,7 @@ const Sections = ({ match }) => {
       </Header>
       <Section>
         <Route path={match.url + '/new'} component={New} />
-        <SectionList />
+        <SectionList path={match.url} />
       </Section>
     </div>
   );

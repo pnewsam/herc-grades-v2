@@ -10,7 +10,7 @@ const UserDash = () => {
       <div className="navbar-item">
         <div className="field is-grouped">
           <p className="control">
-            You are logged in as <Link to="">{user}</Link>
+            You are logged in as <Link to="/profile">{user}</Link>
           </p>
           <div className="control">
             <button className="button is-danger" onClick={this.handleLogout}>

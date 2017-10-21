@@ -1,5 +1,9 @@
 class Api::CoursesController < ApplicationController
   before_action :authenticate_teacher!
+  def index
+    @courses = Course.all
+    render json: @courses.to_json
+  end
   def create
     c = Course.new(name: params[:name])
     if c.save

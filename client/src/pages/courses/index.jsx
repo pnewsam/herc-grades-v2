@@ -3,6 +3,7 @@ import { Link, Route } from 'react-router-dom';
 
 import Header from '../../components/bulma/Header';
 import Section from '../../components/bulma/Section';
+import CoursesList from '../../components/CoursesList/CoursesList';
 import New from './new';
 
 const Courses = ({ match }) => {
@@ -16,6 +17,7 @@ const Courses = ({ match }) => {
         </ul>
       </Header>
       <Section>
+        <Route exact path={match.url} component={CoursesList} />
         <Route path={match.url + '/new'} component={New} />
       </Section>
     </div>

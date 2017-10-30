@@ -21,8 +21,12 @@ const Sections = ({ match }) => {
           </li>
         </ul>
       </Header>
+      <BSection>
+        <Route exact path={match.url + '/new'} component={New} />
         <Route exact path={match.url + '/edit'} component={Edit} />
         <Route path={match.url + '/:id'} component={Show} />
+        <Route exact path={match.url} component={SectionList} />
+      </BSection>
     </div>
   );
 };

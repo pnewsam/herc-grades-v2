@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import Header from '../../components/bulma/Header';
-import Section from '../../components/bulma/Section';
+import BSection from '../../components/bulma/BSection';
 import SectionList from '../../components/SectionList/SectionList';
 import New from './new';
 

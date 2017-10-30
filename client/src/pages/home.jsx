@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/bulma/Header';
-import Section from '../components/bulma/Section';
+import Section from '../components/bulma/BSection';
 
 const Home = () => {
   return (

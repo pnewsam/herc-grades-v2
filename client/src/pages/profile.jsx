@@ -1,7 +1,7 @@
 import React from 'react';
 import UserProfile from '../components/UserProfile';
 import Header from '../components/bulma/Header';
-import Section from '../components/bulma/Section';
+import Section from '../components/bulma/BSection';
 
 const Profile = () => {
   return (

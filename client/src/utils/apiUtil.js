@@ -8,6 +8,6 @@ export const headers = () => {
     'token-type': 'Bearer',
     client: c,
     expiry: e,
-    uid: u
+    uid: u,
   };
 };

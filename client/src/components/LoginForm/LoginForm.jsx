@@ -8,7 +8,7 @@ import { loginUser } from '../../actions/sessionActions';
 import {
   fetchStart,
   fetchSuccess,
-  fetchFailure
+  fetchFailure,
 } from '../../actions/apiActions';
 import { showFlash, hideFlash } from '../../actions/flashActions';
 import SubmitButton from './SubmitButton';
@@ -20,13 +20,13 @@ class LoginForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       email: '',
-      password: ''
+      password: '',
     };
   }
 
   handleChange(e) {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -37,7 +37,7 @@ class LoginForm extends Component {
       axios
         .post('/auth/sign_in', {
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
         })
         .then(response => {
           console.log(response.data);
@@ -71,7 +71,7 @@ class LoginForm extends Component {
           <FormField label="Email">
             <input
               className="input"
-              id="email"
+              name="email"
               type="text"
               placeholder="Enter email here..."
               value={this.state.email}
@@ -81,7 +81,7 @@ class LoginForm extends Component {
           <FormField label="Password">
             <input
               className="input"
-              id="password"
+              name="password"
               type="password"
               placeholder="Enter password here..."
               value={this.state.password}

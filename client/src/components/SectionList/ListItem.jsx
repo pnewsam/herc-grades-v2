@@ -1,14 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ListItem = props => {
   return (
     <div>
       <h2 className="title is-2">
-        {props.courseName}, Period {props.period}
+        <Link to={`/sections/${props.id}`}>{props.name}</Link>
       </h2>
-      <h4 className="title is-4">
-        {props.academicYearStart} - {props.academicYearEnd}
-      </h4>
     </div>
   );
 };

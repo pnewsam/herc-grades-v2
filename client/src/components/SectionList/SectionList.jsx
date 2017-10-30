@@ -8,13 +8,13 @@ class SectionList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sections: []
+      sections: [],
     };
   }
   componentDidMount() {
     axios
       .get('/api/sections', {
-        headers: headers()
+        headers: headers(),
       })
       .then(response => {
         console.log(response);
@@ -26,12 +26,7 @@ class SectionList extends Component {
     return (
       <div>
         {this.state.sections.map(s => (
-          <ListItem
-            courseName={s.course.name}
-            period={s.period}
-            academicYearStart={s.academic_year_start}
-            academicYearEnd={s.academic_year_end}
-          />
+          <ListItem name={s.name} key={s.id} id={s.id} />
         ))}
       </div>
     );

@@ -7,7 +7,7 @@ class Api::SectionsController < ApplicationController
   end
   def show
     s = Section.find(params[:id])
-    render json: s.to_json
+    render json: s.to_json(include: :students)
   end
   def create
     puts current_teacher

@@ -1,11 +1,11 @@
 import React from 'react';
 import EditSectionForm from '../../components/EditSectionForm/EditSectionForm';
 
-const Edit = () => {
+const Edit = ({ match }) => {
   return (
     <div>
-      <h2 className="title is-2">Create a Edit Section</h2>
-      <EditSectionForm />
+      <h2 className="title is-2">Edit this Section</h2>
+      <EditSectionForm id={match.params.id} />
     </div>
   );
 };

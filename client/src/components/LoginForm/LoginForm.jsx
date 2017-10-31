@@ -41,7 +41,6 @@ class LoginForm extends Component {
         })
         .then(response => {
           console.log(response.data);
-          console.log(response.data.data.email);
           dispatch(fetchSuccess(response.data));
           dispatch(loginUser(response.data.data.email));
           dispatch(showFlash('Login successful!', 'success'));

@@ -27,4 +27,21 @@ class Api::SectionsController < ApplicationController
       }
     end
   end
+  def update
+    puts params[:name]
+    s = Section.find(params[:id])
+    if s.update(name: params[:name])
+      render json: {
+        data: {
+          message: 'Section successfully updated!'
+        }
+      }, status: 200
+    else
+      render json: {
+        data: {
+          message: 'Something went wrong.'
+        }, status: 500
+      }
+    end
+  end
 end

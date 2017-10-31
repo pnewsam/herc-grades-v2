@@ -6,7 +6,6 @@ class Api::SectionsController < ApplicationController
     render json: @sections.to_json
   end
   def show
-    puts params
     s = Section.find(params[:id])
     render json: s.to_json
   end
@@ -43,5 +42,21 @@ class Api::SectionsController < ApplicationController
         }, status: 500
       }
     end
+  end
+  def delete
+    s = Section.find(params[:id])
+    if s.destroy
+      render json: {
+        data: {
+          message: 'Section successfully deleted!'
+        }
+      }, status: 200
+    else
+      render json: {
+        data: {
+          message: 'Something went wrong.'
+        }, status: 500
+      }
+    end 
   end
 end

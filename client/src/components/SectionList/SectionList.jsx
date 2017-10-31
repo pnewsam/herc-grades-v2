@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import ListItem from './ListItem';
+import BSection from '../../components/bulma/BSection';
 import { headers } from '../../utils/apiUtil';
 
 class SectionList extends Component {
@@ -24,11 +25,11 @@ class SectionList extends Component {
   }
   render() {
     return (
-      <div>
+      <BSection>
         {this.state.sections.map(s => (
           <ListItem name={s.name} key={s.id} id={s.id} />
         ))}
-      </div>
+      </BSection>
     );
   }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import Header from '../../components/bulma/Header';
-import BSection from '../../components/bulma/BSection';
 import SectionList from '../../components/SectionList/SectionList';
 import New from './new';
 import Edit from './edit';
@@ -21,16 +20,16 @@ const Sections = ({ match }) => {
           </li>
         </ul>
       </Header>
-      <BSection>
-        <Switch>
-          <Route path={match.url + '/new'} component={New} />
-          <Route path={match.url + '/:id/edit'} component={Edit} />
-          <Route path={match.url + '/:id'} component={Show} />
-          <Route path={match.url} component={SectionList} />
-        </Switch>
-      </BSection>
+      <Switch>
+        <Route path={match.url + '/new'} component={New} />
+        <Route path={match.url + '/:id/edit'} component={Edit} />
+        <Route path={match.url + '/:id'} component={Show} />
+        <Route path={match.url} component={SectionList} />
+      </Switch>
     </div>
   );
 };
+
+
 
 export default Sections;

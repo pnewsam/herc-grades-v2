@@ -7,7 +7,7 @@ class Login extends Component {
     super(props);
     this.handleSuccess = this.handleSuccess.bind(this);
     this.state = {
-      success: false
+      success: false,
     };
   }
 

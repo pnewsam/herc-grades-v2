@@ -43,7 +43,7 @@ class Api::SectionsController < ApplicationController
       }
     end
   end
-  def delete
+  def destroy
     s = Section.find(params[:id])
     if s.destroy
       render json: {

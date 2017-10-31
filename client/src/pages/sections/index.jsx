@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import Header from '../../components/bulma/Header';
 import BSection from '../../components/bulma/BSection';
@@ -22,10 +22,12 @@ const Sections = ({ match }) => {
         </ul>
       </Header>
       <BSection>
-        <Route exact path={match.url + '/new'} component={New} />
-        <Route exact path={match.url + '/:id/edit'} component={Edit} />
-        <Route exact path={match.url + '/:id'} component={Show} />
-        <Route exact path={match.url} component={SectionList} />
+        <Switch>
+          <Route path={match.url + '/new'} component={New} />
+          <Route path={match.url + '/:id/edit'} component={Edit} />
+          <Route path={match.url + '/:id'} component={Show} />
+          <Route path={match.url} component={SectionList} />
+        </Switch>
       </BSection>
     </div>
   );

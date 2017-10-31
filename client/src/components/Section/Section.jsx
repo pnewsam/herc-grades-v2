@@ -29,7 +29,7 @@ export class Section extends Component {
   render() {
     return (
       <div>
-        <h2 className="title is-2">{this.state.section.name}</h2>
+        <h2 className="title is-2">{this.state.section.name || 'Section'}</h2>
       </div>
     );
   }

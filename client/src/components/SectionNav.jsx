@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
 
 const SectionNav = props => {
   return (
@@ -19,6 +20,10 @@ const SectionNav = props => {
           >
             Add a Student
           </Link>
+          <DeleteButton
+            action={`/api/sections/${props.id}`}
+            objName="Section"
+          />
         </div>
       </div>
     </nav>

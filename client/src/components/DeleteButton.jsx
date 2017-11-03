@@ -21,9 +21,9 @@ export class DeleteButton extends Component {
   }
   render() {
     return (
-      <button className="button is-danger" onClick={this.handleClick}>
+      <a className="navbar-item is-tab" onClick={this.handleClick}>
         Delete this {this.objName}
-      </button>
+      </a>
     );
   }
 }

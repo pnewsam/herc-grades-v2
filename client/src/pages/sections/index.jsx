@@ -6,6 +6,7 @@ import SectionList from '../../components/SectionList/SectionList';
 import New from './new';
 import Edit from './edit';
 import Show from './show';
+import StudentsNew from './students/new';
 
 const Sections = ({ match }) => {
   return (
@@ -21,6 +22,7 @@ const Sections = ({ match }) => {
         </ul>
       </Header>
       <Switch>
+        <Route path={match.url + '/students/new'} component={StudentsNew} />
         <Route path={match.url + '/new'} component={New} />
         <Route path={match.url + '/:id/edit'} component={Edit} />
         <Route path={match.url + '/:id'} component={Show} />
@@ -29,7 +31,5 @@ const Sections = ({ match }) => {
     </div>
   );
 };
-
-
 
 export default Sections;
